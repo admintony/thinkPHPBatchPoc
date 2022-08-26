@@ -60,7 +60,7 @@ def Scan(url):
         else:
             break
 
-    if i==5:
+    if not flag:
         print("[-] {} is not vulnerable".format(URL))
         print()
     else:
